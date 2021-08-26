@@ -114,6 +114,7 @@ class ViewController: UIViewController {
                 print("[WebCacheCleaner] Record \(record) deleted")
             }
         }
+        configWebView()
     }
 
     private func getCookie() {
@@ -137,6 +138,7 @@ class ViewController: UIViewController {
         let preferences = WKPreferences()
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences = preferences
+        webView.removeFromSuperview()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.uiDelegate = self

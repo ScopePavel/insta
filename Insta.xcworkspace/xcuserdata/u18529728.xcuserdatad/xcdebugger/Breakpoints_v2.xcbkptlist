@@ -3,4 +3,70 @@
    uuid = "C3247B54-F89F-4EE5-83F0-DC69A5ED7E04"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "71076CC6-38B7-4D3E-ABB2-D91383AB2CD2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Insta/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "getCookie()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "71076CC6-38B7-4D3E-ABB2-D91383AB2CD2 - fb1f24704d55c59b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;__C.NSHTTPCookie&gt;) -&gt; () in Insta.ViewController.(getCookie in _D0C4F670A4CF9E009B851BDBCCA1DE55)() -&gt; ()"
+                  moduleName = "Insta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u18529728/Documents/insta/Insta/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  uuid = "71076CC6-38B7-4D3E-ABB2-D91383AB2CD2 - 448074d638392c6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSHTTPCookie) -&gt; Swift.Bool in closure #1 (Swift.Array&lt;__C.NSHTTPCookie&gt;) -&gt; () in Insta.ViewController.(getCookie in _D0C4F670A4CF9E009B851BDBCCA1DE55)() -&gt; ()"
+                  moduleName = "Insta"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/u18529728/Documents/insta/Insta/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "73166726-EB84-4F48-BE66-D176B003AA09"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Insta/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "deleteCookies()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
