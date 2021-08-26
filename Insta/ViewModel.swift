@@ -35,9 +35,10 @@ final class ViewModel {
             let namesFollowing = Set(self.following.map({ $0.username }))
             let namesFollowers = Set(self.followers.map({ $0.username }))
             let diffNames = namesFollowing.symmetricDifference(namesFollowers).sorted(by: <)
-            self.followers.forEach({ self.following.insert($0) })
-
-            self.dataBase = diffNames.compactMap { [weak self] name -> User? in
+            var diffNamesSet = Set(diffNames)
+            namesFollowers.forEach({ diffNamesSet.remove($0) })
+            let newDiffsNames = Array(diffNamesSet).sorted(by: <)
+            self.dataBase = newDiffsNames.compactMap { [weak self] name -> User? in
                 guard let self = self else { return nil }
                 return self.following.first(where: { $0.username == name })
             }
