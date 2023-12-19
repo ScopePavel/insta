@@ -9,6 +9,13 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController {
+	
+	private lazy var loaderView: UIActivityIndicatorView = {
+		let view = UIActivityIndicatorView()
+		view.isHidden = true
+		view.startAnimating()
+		return view
+	}()
 
     var viewModel: ViewModel?
     override func viewDidLoad() {
@@ -97,8 +104,7 @@ class ViewController: UIViewController {
             guard let self = self else { return }
             self.deleteCookies()
             self.openInWebView(url: Consts.insUrl)
-            self.webView.isHidden = false
-            self.tableView.isHidden = true
+			self.updateView(isHiddenTable: true, isHiddenLoaderView: true)
         }))
 
         alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: nil))
@@ -116,20 +122,30 @@ class ViewController: UIViewController {
         }
         configWebView()
     }
+	
+	private func updateView(isHiddenTable: Bool, isHiddenLoaderView: Bool) {
+		webView.isHidden = !isHiddenTable
+		tableView.isHidden = isHiddenTable
+		tableView.reloadData()
+		loaderView.isHidden = isHiddenLoaderView
+	}
 
     private func getCookie() {
+		updateView(isHiddenTable: false, isHiddenLoaderView: false)
         let dataStore = WKWebsiteDataStore.default()
         dataStore.httpCookieStore.getAllCookies({ [weak self] cookies in
             guard
                 let sessionId = cookies.first(where: { $0.name == Consts.sessionid })?.value,
                 let dsUserId = cookies.first(where: { $0.name == Consts.dsUserId })?.value
-            else { return }
+            else {
+				self?.updateView(isHiddenTable: true, isHiddenLoaderView: true)
+				return
+			}
+
             self?.viewModel = ViewModel(dsUserId: dsUserId, sessionId: sessionId)
             self?.viewModel?.updateDataBase(complition: { [weak self] in
                 guard let self = self else { return }
-                self.webView.isHidden = true
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
+				self.updateView(isHiddenTable: false, isHiddenLoaderView: true)
             })
         })
     }
@@ -143,12 +159,17 @@ class ViewController: UIViewController {
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.uiDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
+		loaderView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
+		view.addSubview(loaderView)
+
         NSLayoutConstraint.activate([
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+			loaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			loaderView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         openInWebView(url: Consts.insUrl)
         webView.navigationDelegate = self
